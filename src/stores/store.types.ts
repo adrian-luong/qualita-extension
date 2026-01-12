@@ -1,6 +1,8 @@
+import { Panel } from "@/models/panel.interface"
 import { Tile, TileDTO } from "@/models/tile.interface"
 
 export type ZustandState = {
+    panel: Panel
     tiles: Tile[]
 }
 

@@ -1,10 +1,10 @@
 import { Base, DTO } from "./base.interface";
 
 interface TileFields {
-    tileTags: string[]
-    tileStatus: string
-    tileValue: number
-    // panelID: string
+    tags: string[]
+    status: string
+    value: number
+    panelID: number
 }
 
 export interface Tile extends Base, TileFields {}

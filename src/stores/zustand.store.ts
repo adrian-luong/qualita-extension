@@ -4,13 +4,23 @@ import { ZustandActions, ZustandState } from './store.types'
 import { Tile } from '@/models/tile.interface';
 
 const useZustandStore = create<ZustandState & ZustandActions>((set) => ({
+    panel: {
+        id: 0,
+        name: 'Default Panel',
+        desc: 'Created for testing purpose, not an actual project panel',
+        tileTags: ['test'],
+        tileStatuses: ['To-Do', 'Doing', 'Done'],
+        createdTS: new Date(),
+        lastEditedTS: null
+    },
     tiles: [{
         id: 0,
         name: 'Test task tile',
         desc: 'Created for testing purpose, not an actual task',
-        tileTags: ['test'],
-        tileStatus: 'To-Do',
-        tileValue: 0,
+        tags: ['test'],
+        status: 'To-Do',
+        value: 0, 
+        panelID: 0,
         createdTS: new Date(),
         lastEditedTS: null
     }],
@@ -43,7 +53,7 @@ const useZustandStore = create<ZustandState & ZustandActions>((set) => ({
         const tileIndex = state.tiles.findIndex(tile => tile.id === tileID);
         if (tileIndex > -1) {
             const foundTile = state.tiles[tileIndex]
-            const editedTile: Tile = { ...foundTile, tileStatus: newStatus, lastEditedTS: now }
+            const editedTile: Tile = { ...foundTile, status: newStatus, lastEditedTS: now }
             state.tiles[tileIndex] = editedTile
             return { ...state, tiles: state.tiles }
         }
@@ -55,7 +65,7 @@ const useZustandStore = create<ZustandState & ZustandActions>((set) => ({
         const tileIndex = state.tiles.findIndex(tile => tile.id === tileID);
         if (tileIndex > -1) {
             const foundTile = state.tiles[tileIndex]
-            const editedTile: Tile = { ...foundTile, tileValue: newValue, lastEditedTS: now }
+            const editedTile: Tile = { ...foundTile, value: newValue, lastEditedTS: now }
             state.tiles[tileIndex] = editedTile
             return { ...state, tiles: state.tiles }
         }
